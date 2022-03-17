@@ -10,6 +10,12 @@ $ make
 ```
 
 ## TODO
-- [ ] Create caster
-- [ ] Create player
-- [ ] Dynamic level loading
+- [x] Create caster
+- [x] Create player
+- [x] Dynamic level loading
+- [ ] Sprites
+- [ ] Enemies
+- [ ] Weapons
+- [ ] HUD
+- [ ] Menu
+- [ ] Items
