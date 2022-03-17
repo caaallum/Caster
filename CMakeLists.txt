@@ -1,0 +1,23 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 3.16)
+
+SET(PROJECT_NAME PainInsideC)
+
+PROJECT(${PROJECT_NAME})
+
+FIND_PACKAGE(SFML COMPONENTS system window graphics CONFIG REQUIRED)
+
+FILE(
+        GLOB
+        INCLUDE
+        "src/*.h"
+)
+
+FILE(
+        GLOB
+        SOURCES
+        "src/*.c"
+)
+
+ADD_EXECUTABLE(${PROJECT_NAME} ${SOURCES} ${INCLUDE})
+
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} PRIVATE csfml-system csfml-graphics csfml-window)
