@@ -1,15 +1,14 @@
-#include "caster.h"
+#include "../include/caster.h"
 
 Caster* caster_create(
         unsigned int width,
         unsigned int height,
         unsigned int map_width,
         unsigned int map_height,
-        int* map
-)
+        int* map)
 {
-    sfVector2u window_size = { width, height };
-    sfVector2u map_size = { map_width, map_height };
+    sfVector2u window_size = {width, height};
+    sfVector2u map_size = {map_width, map_height};
 
     Caster* caster = malloc(sizeof(Caster));
 
@@ -33,28 +32,26 @@ void caster_draw(sfRenderWindow* window, Caster* caster)
         double cameraX = 2 * x / (double)caster->window_size.x - 2; /* x-coordinate in camera space */
         sfVector2d rayPos = caster->player->pos;
         sfVector2d rayDir = {
-            caster->player->dir.x + caster->player->plane.x * cameraX,
-            caster->player->dir.y + caster->player->plane.y * cameraX
-        };
+                caster->player->dir.x + caster->player->plane.x * cameraX,
+                caster->player->dir.y + caster->player->plane.y * cameraX};
 
         /* Which box of the map */
-        sfVector2i map = { rayPos.x, rayPos.y };
+        sfVector2i map = {rayPos.x, rayPos.y};
 
         /* Length of ray from current position to next x or y-side */
         sfVector2d sideDist;
 
         /* Length of ray from one x or y-side to next x or y-side */
         sfVector2d deltaDist = {
-            sqrt(1 + (rayDir.y * rayDir.y) / (rayDir.x * rayDir.x)),
-            sqrt(1 + (rayDir.x * rayDir.x) / (rayDir.y * rayDir.y))
-        };
+                sqrt(1 + (rayDir.y * rayDir.y) / (rayDir.x * rayDir.x)),
+                sqrt(1 + (rayDir.x * rayDir.x) / (rayDir.y * rayDir.y))};
         double perpWallDist;
 
         /* What direction to step in x or y-direction (either +1 or -1) */
         sfVector2i step;
 
         int hit = 0; /* Was there a wall hit? */
-        int side; /* Was it NS or EW wall hit */
+        int side;    /* Was it NS or EW wall hit */
 
         /* Calculate step and initial sideDist */
         if (rayDir.x < 0)
@@ -83,11 +80,14 @@ void caster_draw(sfRenderWindow* window, Caster* caster)
         while (!hit)
         {
             /* Jump to next map square, OR in x-direction, OR in y-direction */
-            if (sideDist.x < sideDist.y) {
+            if (sideDist.x < sideDist.y)
+            {
                 sideDist.x += deltaDist.x;
                 map.x += step.x;
                 side = 0;
-            } else {
+            }
+            else
+            {
                 sideDist.y += deltaDist.y;
                 map.y += step.y;
                 side = 1;
@@ -117,11 +117,21 @@ void caster_draw(sfRenderWindow* window, Caster* caster)
         sfColor color;
         switch (caster->map[map.x + map.y * caster->map_size.x])
         {
-            case 1:     color = sfRed;      break;
-            case 2:     color = sfGreen;    break;
-            case 3:     color = sfBlue;     break;
-            case 4:     color = sfWhite;    break;
-            default:    color = sfYellow;   break;
+        case 1:
+            color = sfRed;
+            break;
+        case 2:
+            color = sfGreen;
+            break;
+        case 3:
+            color = sfBlue;
+            break;
+        case 4:
+            color = sfWhite;
+            break;
+        default:
+            color = sfYellow;
+            break;
         }
 
         /* Give x and y sides different brightness */
@@ -134,12 +144,12 @@ void caster_draw(sfRenderWindow* window, Caster* caster)
 
         /* Draw vertical line */
         sfVertex start;
-        sfVector2f startPos = { x, drawStart };
+        sfVector2f startPos = {x, drawStart};
         start.position = startPos;
         start.color = color;
 
         sfVertex end;
-        sfVector2f endPos = { x, drawEnd };
+        sfVector2f endPos = {x, drawEnd};
         end.position = endPos;
         end.color = color;
 

@@ -52,5 +52,4 @@ int player_get_map_pos(sfVector2i, unsigned int);
 void player_destroy(Player*);
 
 
-
-#endif // CASTER_PLAYER_H
+#endif// CASTER_PLAYER_H

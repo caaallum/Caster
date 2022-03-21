@@ -2,9 +2,9 @@
 #define CASTER_STDAFX_H
 
 #include <SFML/Graphics.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 typedef struct
 {
@@ -12,4 +12,4 @@ typedef struct
     double y;
 } sfVector2d;
 
-#endif // CASTER_STDAFX_H
+#endif// CASTER_STDAFX_H

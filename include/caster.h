@@ -1,8 +1,8 @@
 #ifndef CASTER_CASTER_H
 #define CASTER_CASTER_H
 
-#include "stdafx.h"
 #include "player.h"
+#include "stdafx.h"
 
 typedef struct
 {
@@ -39,4 +39,4 @@ void caster_destroy(Caster*);
  */
 void caster_draw(sfRenderWindow*, Caster*);
 
-#endif // CASTER_CASTER_H
+#endif// CASTER_CASTER_H
