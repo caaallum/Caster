@@ -29,7 +29,7 @@ void caster_draw(sfRenderWindow* window, Caster* caster)
 {
     for (unsigned int x = 0; x < caster->window_size.x; x++)
     {
-        double cameraX = 2 * x / (double)caster->window_size.x - 2; /* x-coordinate in camera space */
+        double cameraX = 2 * x / (double)caster->window_size.x - 1; /* x-coordinate in camera space */
         sfVector2d rayPos = caster->player->pos;
         sfVector2d rayDir = {
                 caster->player->dir.x + caster->player->plane.x * cameraX,
